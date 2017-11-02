@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 #
 # /etc/init.d/tomcat7 -- startup script for the Tomcat 6 servlet engine
 #
