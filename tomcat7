@@ -50,8 +50,8 @@ fi
 # The following variables can be overwritten in $DEFAULT
 
 # Run Tomcat 7 as this user ID and group ID
-TOMCAT7_USER=tomcat7
-TOMCAT7_GROUP=tomcat7
+TOMCAT7_USER=`id -u`
+TOMCAT7_GROUP=0
 
 # this is a work-around until there is a suitable runtime replacement 
 # for dpkg-architecture for arch:all packages
