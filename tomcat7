@@ -171,6 +171,15 @@ catalina_sh() {
 
 	# Run the catalina.sh script as a daemon
 	set +e
+
+        ls -l $(dirname $CATALINA_PID) $(dirname $CATALINA_BASE/logs/catalina.out)
+        echo "TOMCAT7_USER = $TOMCAT7_USER"
+        echo "TOMCAT7_GROUP = $TOMCAT7_GROUP"
+	echo -n "UID = "
+        id -u
+        echo -n "GID = "
+        id -g
+        
 	touch "$CATALINA_PID" "$CATALINA_BASE"/logs/catalina.out
 	chown $TOMCAT7_USER "$CATALINA_PID" "$CATALINA_BASE"/logs/catalina.out
 	start-stop-daemon --start -b -u "$TOMCAT7_USER" -g "$TOMCAT7_GROUP" \
