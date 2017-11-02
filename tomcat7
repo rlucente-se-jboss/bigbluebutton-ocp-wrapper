@@ -23,6 +23,8 @@
 
 set -e
 
+usermod --uid $(id -u) --gid $(id -g) tomcat7
+
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 NAME=tomcat7
 DESC="Tomcat servlet engine"
@@ -50,8 +52,8 @@ fi
 # The following variables can be overwritten in $DEFAULT
 
 # Run Tomcat 7 as this user ID and group ID
-TOMCAT7_USER=`id -u`
-TOMCAT7_GROUP=0
+TOMCAT7_USER=tomcat7
+TOMCAT7_GROUP=root
 
 # this is a work-around until there is a suitable runtime replacement 
 # for dpkg-architecture for arch:all packages
