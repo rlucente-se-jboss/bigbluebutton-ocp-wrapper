@@ -49,12 +49,12 @@ done
 
 apt-get install -y bbb-demo && /etc/init.d/tomcat7 start
 while [ ! -f /var/lib/tomcat7/webapps/demo/bbb_api_conf.jsp ]; do sleep 1; done
-sudo /etc/init.d/tomcat7 stop
+/etc/init.d/tomcat7 stop
 
 
 # Setup loopback address so FreeSWITCH can bind WS-BIND-URL to host IP
 #
-sudo ip addr add $HOST dev lo
+ip addr add $HOST dev lo
 
 # Setup the BigBlueButton configuration files
 #
