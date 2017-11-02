@@ -10,8 +10,8 @@ LABEL io.k8s.description="Run BBB in OpenShift" \
 # Give all directories to root group (not root user)
 # https://docs.openshift.com/container-platform/3.6/creating_images/guidelines.html
 
-RUN    chgrp -R 0 / \
-    && chmod -R g=u /
+RUN    chgrp -R 0 /bin /etc /home /media /mnt /opt /run /srv /tmp /usr /var \
+    && chmod -R g=u /bin /etc /home /media /mnt /opt /run /srv /tmp /usr /var
 
 USER 1000
 
