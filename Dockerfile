@@ -20,6 +20,7 @@ ADD    setup.sh /root/setup.sh
 # https://docs.openshift.com/container-platform/3.6/creating_images/guidelines.html
 RUN    rm -fr /tmp/* /var/run/tomcat7.pid /var/lib/tomcat7/logs/* \
     && chmod a+x /etc/init.d/tomcat7 /root/setup.sh \
+    && chmod g+w /run \
     && chgrp -R 0 $dirlist \
     && chmod -R g=u $dirlist
 
