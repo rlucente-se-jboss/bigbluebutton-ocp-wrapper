@@ -18,7 +18,7 @@ ADD    setup.sh /root/setup.sh
 
 # Give all directories to root group (not root user)
 # https://docs.openshift.com/container-platform/3.6/creating_images/guidelines.html
-RUN    rm -fr /tmp/* \
+RUN    rm -fr /tmp/* /var/run/* /var/lib/tomcat7/* \
     && chmod a+x /etc/init.d/tomcat7 /root/setup.sh \
     && chgrp -R 0 $dirlist \
     && chmod -R g=u $dirlist
