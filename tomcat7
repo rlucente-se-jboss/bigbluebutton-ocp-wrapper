@@ -23,8 +23,6 @@
 
 set -e
 
-usermod --uid $(id -u) --gid $(id -g) tomcat7
-
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 NAME=tomcat7
 DESC="Tomcat servlet engine"
