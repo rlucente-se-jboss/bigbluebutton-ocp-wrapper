@@ -27,7 +27,7 @@ RUN    rm -fr /tmp/* /var/run/tomcat7.pid /var/lib/tomcat7/logs/* \
 
 USER 1000
 
-EXPOSE 8080
+EXPOSE 1935 2855 2856 3000 5060 5066 5070 5080 5090 56092 8080 8081 8082 9999
 
 ENTRYPOINT ["/root/setup.sh"]
 CMD []
