@@ -8,7 +8,7 @@ change_var_value () {
 # make sure tomcat7 uses current uid and gid 0
 sed -i 's/:106:107:/:'$(id -u)':0:/g' /etc/passwd
 sed -i 's/TOMCAT7_GROUP=tomcat7/TOMCAT7_GROUP=root/g' /etc/default/tomcat7
-HOST=bbb.myproject.svc.cluster.local
+HOST=http://bbb-myproject.192.168.99.100.nip.io
 
 # docker build -t ffdixon/play_win .
 # docker run -p 80:80/tcp -p 443:443/tcp -p 1935:1935/tcp -p 5066:5066/tcp -p 2202:2202 -p 32750-32768:32750-32768/udp --cap-add=NET_ADMIN ffdixon/play_win -h 192.168.0.130
