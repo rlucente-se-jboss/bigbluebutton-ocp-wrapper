@@ -1,4 +1,6 @@
 # bigbluebutton-ocp-wrapper
+This is a lightweight wrapper to the [BigBlueButton Docker Image](https://github.com/bigbluebutton/docker) to enable running
+on OpenShift.  The changes are summarized below.
 
 Changes to setup.sh:
 
