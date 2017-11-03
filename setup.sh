@@ -127,4 +127,3 @@ sed -i 's/BigBlueButton.logger.debug("rap-publish-worker done")/sleep 20; BigBlu
 #
 /usr/bin/supervisord
 
-
