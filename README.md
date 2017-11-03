@@ -59,3 +59,115 @@ Changes to mod/tomcat7:
      
      # this is a work-around until there is a suitable runtime replacement 
      # for dpkg-architecture for arch:all packages
+
+Changes to supervisord.conf:
+
+    --- docker/supervisord.conf	2017-11-02 20:31:57.000000000 -0400
+    +++ supervisord.conf	2017-11-02 20:36:15.000000000 -0400
+    @@ -7,7 +7,8 @@
+     [program:redis-server]
+     startsecs = 0
+     autorestart = false
+    -#user=redis
+    +user=tomcat7
+    +group=root
+     command=/usr/bin/redis-server /etc/redis/redis.conf
+     stdout_logfile=/var/log/redis/stdout.log
+     stderr_logfile=/var/log/redis/stderr.log
+    @@ -15,34 +16,39 @@
+     [program:nginx]
+     startsecs = 0
+     autorestart = false
+    +user=tomcat7
+    +group=root
+     command=/usr/sbin/nginx -g "daemon off;"
+     
+     [program:freeswitch]
+     startsecs = 0
+     autorestart = false
+    -user=freeswitch
+    -group=daemon
+    +user=tomcat7
+    +group=root
+     directory=/opt/freeswitch
+     command=/opt/freeswitch/bin/freeswitch -nc -nf -core -nonat
+     
+     [program:bbb-apps-akka]
+     startsecs = 0
+     autorestart = false
+    -user=bigbluebutton
+    +user=tomcat7
+    +group=root
+     directory=/usr/share/bbb-apps-akka
+     command=/usr/share/bbb-apps-akka/bin/bbb-apps-akka
+     
+     [program:bbb-fsesl-akka]
+     startsecs = 0
+     autorestart = false
+    -user=bigbluebutton
+    +user=tomcat7
+    +group=root
+     directory=/usr/share/bbb-fsesl-akka
+     command=/usr/share/bbb-fsesl-akka/bin/bbb-fsesl-akka
+     
+     [program:red5]
+     startsecs = 0
+     autorestart = false
+    -user=red5
+    +user=tomcat7
+    +group=root
+     directory=/usr/share/red5
+     command=/usr/share/red5/red5.sh
+     
+    @@ -50,42 +56,48 @@
+     command=/usr/local/bigbluebutton/core/scripts/rap-archive-worker.rb
+     directory=/usr/local/bigbluebutton/core/scripts
+     user=tomcat7
+    +group=root
+     autorestart=true
+     
+     [program:rap-process-worker]
+     command=/usr/local/bigbluebutton/core/scripts/rap-process-worker.rb
+     directory=/usr/local/bigbluebutton/core/scripts
+     user=tomcat7
+    +group=root
+     autorestart=true
+     
+     [program:rap-sanity-worker]
+     command=/usr/local/bigbluebutton/core/scripts/rap-sanity-worker.rb
+     directory=/usr/local/bigbluebutton/core/scripts
+     user=tomcat7
+    +group=root
+     autorestart=true
+     
+     [program:rap-publish-worker]
+     command=/usr/local/bigbluebutton/core/scripts/rap-publish-worker.rb 
+     directory=/usr/local/bigbluebutton/core/scripts
+     user=tomcat7
+    +group=root
+     autorestart=true
+     
+     [program:mongod]
+     command=/usr/bin/mongod --quiet --config /etc/mongod.conf
+     stdout_logfile=/var/log/supervisor/%(program_name)s.log
+     stderr_logfile=/var/log/supervisor/%(program_name)s.log
+    -user=mongodb
+    +user=tomcat7
+    +group=root
+     autorestart=true
+     
+     [program:bbb-html5]
+     command=/usr/share/meteor/bundle/systemd_start.sh
+     directory=/usr/share/meteor/bundle
+    -user=meteor
+    -group=meteor
+    +user=tomcat7
+    +group=root
+     autorestart=true
+     
+     [program:tomcat7]
+     startsecs = 0
+     autorestart = false
+     user=tomcat7
+    +group=root
+     command=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/bin/java -Djava.util.logging.config.file=/var/lib/tomcat7/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC -Xms256m -Xmx256m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/bigbluebutton/diagnostics -Djava.endorsed.dirs=/usr/share/tomcat7/endorsed -classpath /usr/share/tomcat7/bin/bootstrap.jar:/usr/share/tomcat7/bin/tomcat-juli.jar -Dcatalina.base=/var/lib/tomcat7 -Dcatalina.home=/usr/share/tomcat7 -Djava.io.tmpdir=/tmp/tomcat7-tomcat7-tmp org.apache.catalina.startup.Bootstrap start
