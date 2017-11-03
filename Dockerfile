@@ -15,6 +15,7 @@ ENV dirlist /root /etc /home /media /mnt /opt /srv /tmp /usr /var \
 # DO NOT REQUIRE root TO RUN
 ADD    tomcat7 /etc/init.d/tomcat7
 ADD    setup.sh /root/setup.sh
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Give all directories to root group (not root user)
 # https://docs.openshift.com/container-platform/3.6/creating_images/guidelines.html
